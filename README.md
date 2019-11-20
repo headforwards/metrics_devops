@@ -1,3 +1,6 @@
+This project won't work at all until you go through it and update the fictional Azure Devops URLs and credentials, preferably in an environment variable or two.
+There's a fair chance that it won't work after that either ;-)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
