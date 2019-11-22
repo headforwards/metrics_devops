@@ -1,6 +1,10 @@
 This project won't work at all until you go through it and update the fictional Azure Devops URLs and credentials, preferably in an environment variable or two.
 There's a fair chance that it won't work after that either ;-)
 
+It's the beginnings of getting data out of devops about the rate that work is pulled off the backlog each week, the changes that occur in the backlog over time, the overall timelines of workitems as they move through different states.
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
