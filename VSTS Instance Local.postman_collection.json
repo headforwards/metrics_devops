@@ -1,0 +1,1744 @@
+{
+	"info": {
+		"_postman_id": "f23ca25a-02c6-42ea-9779-d15019d3e132",
+		"name": "VSTS Instance Local",
+		"description": "Collection of requests that look at a VSTS project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "System Configuration Information",
+			"item": [
+				{
+					"name": "Get all Projects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{vsts_collection}}.visualstudio.com/_apis/projects",
+							"protocol": "https",
+							"host": [
+								"{{vsts_collection}}",
+								"visualstudio",
+								"com"
+							],
+							"path": [
+								"_apis",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get fields for a work item type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{vsts_collection}}.visualstudio.com/{{project_name}}/_apis/wit/workitemtypes/Product Backlog Item/fields?api-version=4.1",
+							"protocol": "https",
+							"host": [
+								"{{vsts_collection}}",
+								"visualstudio",
+								"com"
+							],
+							"path": [
+								"{{project_name}}",
+								"_apis",
+								"wit",
+								"workitemtypes",
+								"Product Backlog Item",
+								"fields"
+							],
+							"query": [
+								{
+									"key": "api-version",
+									"value": "4.1"
+								}
+							]
+						},
+						"description": "Retrieves all the fields that are configured for a specific work item type (e.g. Bug, Product Backlog Item, Feature, Epic)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get collection field configuration",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{vsts_collection}}.visualstudio.com/_apis/wit/fields?api-version=1.0",
+							"protocol": "https",
+							"host": [
+								"{{vsts_collection}}",
+								"visualstudio",
+								"com"
+							],
+							"path": [
+								"_apis",
+								"wit",
+								"fields"
+							],
+							"query": [
+								{
+									"key": "api-version",
+									"value": "1.0"
+								}
+							]
+						},
+						"description": "Retrieves the configuration of the fields across the collection that can be used within records"
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ace12f16-243d-424c-a6e8-15810c31943a",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "0557169c-96ea-4bf4-8d19-e9f5980d73f8",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Id specific requests",
+			"item": [
+				{
+					"name": "Get Specific Work Items with History",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{vsts_collection}}.visualstudio.com/_apis/wit/workitems/39608/revisions",
+							"protocol": "https",
+							"host": [
+								"{{vsts_collection}}",
+								"visualstudio",
+								"com"
+							],
+							"path": [
+								"_apis",
+								"wit",
+								"workitems",
+								"39608",
+								"revisions"
+							]
+						},
+						"description": "Returns all the details for a specific work item including every change that has been made since it was created"
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve work item full details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{vsts_collection}}.visualstudio.com/{{project_name}}/_apis/wit/workitems?ids=18489&api-version=1.0&$expand=all",
+							"protocol": "https",
+							"host": [
+								"{{vsts_collection}}",
+								"visualstudio",
+								"com"
+							],
+							"path": [
+								"{{project_name}}",
+								"_apis",
+								"wit",
+								"workitems"
+							],
+							"query": [
+								{
+									"key": "ids",
+									"value": "18489"
+								},
+								{
+									"key": "api-version",
+									"value": "1.0"
+								},
+								{
+									"key": "$expand",
+									"value": "all"
+								}
+							]
+						},
+						"description": "Retrieves all the current information for a work item\n\n**Notes**\n* To retrieve the information as it was at a particular point in time add the *asOf* query string parameter. For e.g. asOf=2018-08-01\n* The *ids* parameter can accept a comma separated list of ids - up to a maximum of 200 ids"
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve specific task",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{vsts_collection}}.visualstudio.com/{{project_name}}/_apis/wit/workitems?ids=18481&$expand=all",
+							"protocol": "https",
+							"host": [
+								"{{vsts_collection}}",
+								"visualstudio",
+								"com"
+							],
+							"path": [
+								"{{project_name}}",
+								"_apis",
+								"wit",
+								"workitems"
+							],
+							"query": [
+								{
+									"key": "ids",
+									"value": "18481"
+								},
+								{
+									"key": "$expand",
+									"value": "all"
+								}
+							]
+						},
+						"description": "Retrieves all the current information for a work item\n\n**Notes**\n* To retrieve the information as it was at a particular point in time add the *asOf* query string parameter. For e.g. asOf=2018-08-01\n* The *ids* parameter can accept a comma separated list of ids - up to a maximum of 200 ids"
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve specific list of work items",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{vsts_collection}}.visualstudio.com/{{project_name}}/_apis/wit/workitems?ids=33707,33556,31670&asOf=2018-10-29T00:00:00.000Z&fields=System.Id,System.Title,Microsoft.VSTS.Common.BacklogPriority",
+							"protocol": "https",
+							"host": [
+								"{{vsts_collection}}",
+								"visualstudio",
+								"com"
+							],
+							"path": [
+								"{{project_name}}",
+								"_apis",
+								"wit",
+								"workitems"
+							],
+							"query": [
+								{
+									"key": "ids",
+									"value": "33707,33556,31670"
+								},
+								{
+									"key": "asOf",
+									"value": "2018-10-29T00:00:00.000Z"
+								},
+								{
+									"key": "fields",
+									"value": "System.Id,System.Title,Microsoft.VSTS.Common.BacklogPriority"
+								}
+							]
+						},
+						"description": "Retrieves all the current information for a work item\n\n**Notes**\n* To retrieve the information as it was at a particular point in time add the *asOf* query string parameter. For e.g. asOf=2018-08-01\n* The *ids* parameter can accept a comma separated list of ids - up to a maximum of 200 ids"
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve specific list of work items all details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{vsts_collection}}.visualstudio.com/{{project_name}}/_apis/wit/workitems?ids=93323 ,33556,31670&asOf=2018-10-29T00:00:00.000Z&$expand=all",
+							"protocol": "https",
+							"host": [
+								"{{vsts_collection}}",
+								"visualstudio",
+								"com"
+							],
+							"path": [
+								"{{project_name}}",
+								"_apis",
+								"wit",
+								"workitems"
+							],
+							"query": [
+								{
+									"key": "ids",
+									"value": "93323 ,33556,31670"
+								},
+								{
+									"key": "asOf",
+									"value": "2018-10-29T00:00:00.000Z"
+								},
+								{
+									"key": "$expand",
+									"value": "all"
+								}
+							]
+						},
+						"description": "Retrieves all the current information for a work item\n\n**Notes**\n* To retrieve the information as it was at a particular point in time add the *asOf* query string parameter. For e.g. asOf=2018-08-01\n* The *ids* parameter can accept a comma separated list of ids - up to a maximum of 200 ids"
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve specific task history",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{vsts_collection}}.visualstudio.com/{{project_name}}/_apis/wit/workitems/18481/revisions",
+							"protocol": "https",
+							"host": [
+								"{{vsts_collection}}",
+								"visualstudio",
+								"com"
+							],
+							"path": [
+								"{{project_name}}",
+								"_apis",
+								"wit",
+								"workitems",
+								"18481",
+								"revisions"
+							]
+						},
+						"description": "Retrieves all the current information for a work item\n\n**Notes**\n* To retrieve the information as it was at a particular point in time add the *asOf* query string parameter. For e.g. asOf=2018-08-01\n* The *ids* parameter can accept a comma separated list of ids - up to a maximum of 200 ids"
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve work item with relations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{vsts_collection}}.visualstudio.com/{{project_name}}/_apis/wit/workitems/71969 ?$expand=all",
+							"protocol": "https",
+							"host": [
+								"{{vsts_collection}}",
+								"visualstudio",
+								"com"
+							],
+							"path": [
+								"{{project_name}}",
+								"_apis",
+								"wit",
+								"workitems",
+								"71969 "
+							],
+							"query": [
+								{
+									"key": "$expand",
+									"value": "all"
+								}
+							]
+						},
+						"description": "Retrieves all the current information for a work item\n\n**Notes**\n* To retrieve the information as it was at a particular point in time add the *asOf* query string parameter. For e.g. asOf=2018-08-01\n* The *ids* parameter can accept a comma separated list of ids - up to a maximum of 200 ids"
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve work item full details with own auth",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "a_password_or_auth_token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{vsts_collection}}.visualstudio.com/{{project_name}}/_apis/wit/workitems?ids=18489&api-version=1.0",
+							"protocol": "https",
+							"host": [
+								"{{vsts_collection}}",
+								"visualstudio",
+								"com"
+							],
+							"path": [
+								"{{project_name}}",
+								"_apis",
+								"wit",
+								"workitems"
+							],
+							"query": [
+								{
+									"key": "ids",
+									"value": "18489"
+								},
+								{
+									"key": "api-version",
+									"value": "1.0"
+								}
+							]
+						},
+						"description": "Retrieves all the current information for a work item\n\n**Notes**\n* To retrieve the information as it was at a particular point in time add the *asOf* query string parameter. For e.g. asOf=2018-08-01\n* The *ids* parameter can accept a comma separated list of ids - up to a maximum of 200 ids"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all changes for a specific release",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{vsts_collection}}.vsrm.visualstudio.com/{{project_name}}/_apis/Release/releases/462/workitems?api-version=4.1-preview.1&baseReleaseId=364",
+							"protocol": "https",
+							"host": [
+								"{{vsts_collection}}",
+								"vsrm",
+								"visualstudio",
+								"com"
+							],
+							"path": [
+								"",
+								"{{project_name}}",
+								"_apis",
+								"Release",
+								"releases",
+								"462",
+								"workitems"
+							],
+							"query": [
+								{
+									"key": "api-version",
+									"value": "4.1-preview.1"
+								},
+								{
+									"key": "baseReleaseId",
+									"value": "364"
+								}
+							]
+						},
+						"description": "Lists all the work items that have changed since the specified release id\n\n*baseReleaseId* of 364 is the  release that was active in JUne 2018\nRelease 462 is the July 2018  release\n\n**This request requires READ access to Work Items AND Releases**"
+					},
+					"response": []
+				}
+			],
+			"description": "These requests rely on a specific work item identifier so they will need to be manually updated if the collection configuration variables change"
+		},
+		{
+			"name": "Get Test Data",
+			"item": [
+				{
+					"name": "Get Work Item Ids",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d76e3e96-973c-462e-9599-d4c6f2679bca",
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"console.log(jsonData);",
+									"",
+									"var workItems = pm.response.json().workItems;",
+									"",
+									"var workItemCount = workItems.length;",
+									"var loopLimit = 200;",
+									"var sliceStart;",
+									"var sliceEnd;",
+									"",
+									"for (i=0;i<Math.ceil(workItemCount / loopLimit);i++) {",
+									"    ",
+									"    sliceStart = i+(i*loopLimit);",
+									"    sliceEnd = loopLimit + sliceStart;",
+									"    ",
+									"    //console.log(\"Loop count: \" + i);",
+									"    //console.log(\"Slice Start: \" + sliceStart);",
+									"    //console.log(\"Slice End: \" + sliceEnd);",
+									"",
+									"    var ids = workItems.slice(sliceStart, sliceEnd).map(wi => {",
+									"        return wi.id;",
+									"    });",
+									"    ",
+									"    var idString = JSON.stringify(ids);",
+									"    ",
+									"    console.log(\"Iteration: \" + i + \" - \" + idString);",
+									"    //console.log(idString);",
+									"}",
+									"",
+									"",
+									"console.log(\"Done\");",
+									"",
+									"//pm.environment.set(\"work_item_ids\", idList);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"query\": \"Select [System.Id] FROM WorkItems WHERE [System.TeamProject] = @project AND [System.WorkItemType] = '{{story_work_item_type}}'\"\r\n}"
+						},
+						"url": {
+							"raw": "https://{{vsts_collection}}.visualstudio.com/{{project_name}}/_apis/wit/wiql?api-version=1.0",
+							"protocol": "https",
+							"host": [
+								"{{vsts_collection}}",
+								"visualstudio",
+								"com"
+							],
+							"path": [
+								"{{project_name}}",
+								"_apis",
+								"wit",
+								"wiql"
+							],
+							"query": [
+								{
+									"key": "api-version",
+									"value": "1.0"
+								}
+							]
+						},
+						"description": "**This request requires READ access to Work Items**"
+					},
+					"response": []
+				},
+				{
+					"name": "Get more than one ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{vsts_collection}}.visualstudio.com/DefaultCollection/_apis/wit/workItems?ids=18643,18730&$expand=all",
+							"protocol": "https",
+							"host": [
+								"{{vsts_collection}}",
+								"visualstudio",
+								"com"
+							],
+							"path": [
+								"DefaultCollection",
+								"_apis",
+								"wit",
+								"workItems"
+							],
+							"query": [
+								{
+									"key": "ids",
+									"value": "18643,18730"
+								},
+								{
+									"key": "$expand",
+									"value": "all"
+								}
+							]
+						},
+						"description": "Getting as much data as we can from more than one ID at a time"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Work Item Details 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{vsts_collection}}.visualstudio.com/{{project_name}}/_apis/wit/workitems?ids=18478,18484,18486,18487,18489,18490,18492,18493,18495,18503,18515,18517,18518,18519,18520,18522,18524,18529,18530,18531,18532,18537,18544,18547,18548,18549,18558,18559,18562,18564,18565,18566,18567,18591,18592,18593,18643,18730,18751,18773,18819,18821,18827,18852,18857,18880,18881,18882,18883,18887,18888,18889,18890,18891,18892,18893,18894,18895,18896,18897,18898,18901,18913,18940,18941,18942,18943,18944,18950,18965,18977,18992,18994,18996,19014,19020,19079,19085,19107,19108,19109,19110,19111,19153,19214,19216,19224,19226,19227,19228,19229,19230,19231,19232,19233,19234,19235,19236,19237,19239,19240,19241,19242,19243,19244,19246,19247,19248,19268,19286,19313,19316,19356,19357,19372,19373,19374,19376,19384,19385,19386,19387,19388,19389,19390,19391,19392,19393,19455,19501,19502,19503,19504,19505,19518,19520,19525,19526,19527,19528,19529,19530,19531,19532,19534,19560,19576,19583,19594,19629,19631,19636,19638,19641,19643,19646,19649,19650,19653,19657,19659,19662,19667,19669,19670,19671,19678,19680,19683,19688,19691,19693,19698,19699,19704,19705,19707,19708,19712,19715,19716,19717,19718,19719,19720,19723,19724,19725,19727,19731,19734,19735,19736,19738,19739,19741,19744,19745,19746,19748&api-version=1.0",
+							"protocol": "https",
+							"host": [
+								"{{vsts_collection}}",
+								"visualstudio",
+								"com"
+							],
+							"path": [
+								"{{project_name}}",
+								"_apis",
+								"wit",
+								"workitems"
+							],
+							"query": [
+								{
+									"key": "ids",
+									"value": "18478,18484,18486,18487,18489,18490,18492,18493,18495,18503,18515,18517,18518,18519,18520,18522,18524,18529,18530,18531,18532,18537,18544,18547,18548,18549,18558,18559,18562,18564,18565,18566,18567,18591,18592,18593,18643,18730,18751,18773,18819,18821,18827,18852,18857,18880,18881,18882,18883,18887,18888,18889,18890,18891,18892,18893,18894,18895,18896,18897,18898,18901,18913,18940,18941,18942,18943,18944,18950,18965,18977,18992,18994,18996,19014,19020,19079,19085,19107,19108,19109,19110,19111,19153,19214,19216,19224,19226,19227,19228,19229,19230,19231,19232,19233,19234,19235,19236,19237,19239,19240,19241,19242,19243,19244,19246,19247,19248,19268,19286,19313,19316,19356,19357,19372,19373,19374,19376,19384,19385,19386,19387,19388,19389,19390,19391,19392,19393,19455,19501,19502,19503,19504,19505,19518,19520,19525,19526,19527,19528,19529,19530,19531,19532,19534,19560,19576,19583,19594,19629,19631,19636,19638,19641,19643,19646,19649,19650,19653,19657,19659,19662,19667,19669,19670,19671,19678,19680,19683,19688,19691,19693,19698,19699,19704,19705,19707,19708,19712,19715,19716,19717,19718,19719,19720,19723,19724,19725,19727,19731,19734,19735,19736,19738,19739,19741,19744,19745,19746,19748"
+								},
+								{
+									"key": "api-version",
+									"value": "1.0"
+								}
+							]
+						},
+						"description": "Retrieves all the current information for a work item\n\n**Notes**\n* To retrieve the information as it was at a particular point in time add the *asOf* query string parameter. For e.g. asOf=2018-08-01\n* The *ids* parameter can accept a comma separated list of ids - up to a maximum of 200 ids"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Work Item Details 2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{vsts_collection}}.visualstudio.com/{{project_name}}/_apis/wit/workitems?ids=19753,19754,19755,19756,19758,19760,19761,19762,19764,19765,19766,19769,19771,19772,19773,19774,19775,19777,19778,19780,19782,19783,19784,19787,19788,19789,19791,19792,19793,19797,19799,19801,19802,19804,19805,19806,19808,19810,19811,19813,19814,19815,19816,19818,19821,19822,19824,19825,19826,19828,19829,19830,19833,19834,19835,19836,19838,19840,19842,19845,19847,19848,19851,19854,19859,19861,19865,19866,19868,19873,19874,19878,19880,19882,19890,19891,19892,19894,19896,19897,19898,19902,19903,19904,19906,19907,19910,19911,19918,19925,19926,19927,19928,19932,19934,19936,19938,19944,19948,19949,19951,19952,19954,19955,19957,19958,19960,19962,19969,19971,19973,19975,19977,19978,19979,19980,19981,19982,19985,19986,19987,19989,19990,19992,19993,19994,19995,19997,19998,19999,20000,20001,20002,20004,20005,20006,20007,20009,20011,20012,20014,20016,20017,20018,20021,20023,20024,20025,20026,20028,20029,20030,20032,20033,20034,20035,20036,20037,20038,20039,20040,20042,20044,20045,20046,20048,20050,20052,20053,20054,20056,20058,20059,20060,20061,20062,20063,20064,20065,20066,20067,20069,20070,20071,20072,20075,20076,20077,20078,20080,20081,20082,20083,20085,20086,20087,20089,20090,20091,20092&api-version=1.0",
+							"protocol": "https",
+							"host": [
+								"{{vsts_collection}}",
+								"visualstudio",
+								"com"
+							],
+							"path": [
+								"{{project_name}}",
+								"_apis",
+								"wit",
+								"workitems"
+							],
+							"query": [
+								{
+									"key": "ids",
+									"value": "19753,19754,19755,19756,19758,19760,19761,19762,19764,19765,19766,19769,19771,19772,19773,19774,19775,19777,19778,19780,19782,19783,19784,19787,19788,19789,19791,19792,19793,19797,19799,19801,19802,19804,19805,19806,19808,19810,19811,19813,19814,19815,19816,19818,19821,19822,19824,19825,19826,19828,19829,19830,19833,19834,19835,19836,19838,19840,19842,19845,19847,19848,19851,19854,19859,19861,19865,19866,19868,19873,19874,19878,19880,19882,19890,19891,19892,19894,19896,19897,19898,19902,19903,19904,19906,19907,19910,19911,19918,19925,19926,19927,19928,19932,19934,19936,19938,19944,19948,19949,19951,19952,19954,19955,19957,19958,19960,19962,19969,19971,19973,19975,19977,19978,19979,19980,19981,19982,19985,19986,19987,19989,19990,19992,19993,19994,19995,19997,19998,19999,20000,20001,20002,20004,20005,20006,20007,20009,20011,20012,20014,20016,20017,20018,20021,20023,20024,20025,20026,20028,20029,20030,20032,20033,20034,20035,20036,20037,20038,20039,20040,20042,20044,20045,20046,20048,20050,20052,20053,20054,20056,20058,20059,20060,20061,20062,20063,20064,20065,20066,20067,20069,20070,20071,20072,20075,20076,20077,20078,20080,20081,20082,20083,20085,20086,20087,20089,20090,20091,20092"
+								},
+								{
+									"key": "api-version",
+									"value": "1.0"
+								}
+							]
+						},
+						"description": "Retrieves all the current information for a work item\n\n**Notes**\n* To retrieve the information as it was at a particular point in time add the *asOf* query string parameter. For e.g. asOf=2018-08-01\n* The *ids* parameter can accept a comma separated list of ids - up to a maximum of 200 ids"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Work Item Details 3",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{vsts_collection}}.visualstudio.com/{{project_name}}/_apis/wit/workitems?ids=20094,20095,20096,20097,20099,20101,20103,20104,20105,20106,20107,20108,20109,20110,20111,20112,20114,20115,20116,20117,20120,20122,20125,20128,20129,20130,20131,20132,20133,20134,20135,20136,20138,20139,20140,20141,20142,20143,20144,20145,20146,20148,20149,20151,20152,20153,20154,20157,20259,23507,23544,28869,28922,28964,29278,29541,29617,29622,29623,29681,30056,30111,30123,30131,30137,30716,30723,30724,30725,30726,31098,31258,31292,31409,31579,31581,31660,31670,31695,31704,31705,31706,31837,31864,32000,32001,32002,32012,32146,32153,32194,32204,32206,32210,32509,32510,32568,32626,32628,33253,33349,33362,33544,33556,33707,39331,39472,39473,39506,39509,39531,39549,39550,39551,39608,39632,39764,42570,42603,42775,42795,43034,43134,43165,43890,44138,44177,44209,44211,44221,44222,44248,52872,53059,53229,53916,53917,53918,53919,54193,54194,54222,54223,54224,55021,55360,55402,64801,65944,65969,65991,66640,66650,66719,66736,67080,68741,70397,70531,70532,70538,71121,71632,71633,71703,71732,71734,72083,72093,72104,75015,75262,75836,76078,76199,76579,76688,76693,76811,78223,78745,79984,80254&api-version=1.0",
+							"protocol": "https",
+							"host": [
+								"{{vsts_collection}}",
+								"visualstudio",
+								"com"
+							],
+							"path": [
+								"{{project_name}}",
+								"_apis",
+								"wit",
+								"workitems"
+							],
+							"query": [
+								{
+									"key": "ids",
+									"value": "20094,20095,20096,20097,20099,20101,20103,20104,20105,20106,20107,20108,20109,20110,20111,20112,20114,20115,20116,20117,20120,20122,20125,20128,20129,20130,20131,20132,20133,20134,20135,20136,20138,20139,20140,20141,20142,20143,20144,20145,20146,20148,20149,20151,20152,20153,20154,20157,20259,23507,23544,28869,28922,28964,29278,29541,29617,29622,29623,29681,30056,30111,30123,30131,30137,30716,30723,30724,30725,30726,31098,31258,31292,31409,31579,31581,31660,31670,31695,31704,31705,31706,31837,31864,32000,32001,32002,32012,32146,32153,32194,32204,32206,32210,32509,32510,32568,32626,32628,33253,33349,33362,33544,33556,33707,39331,39472,39473,39506,39509,39531,39549,39550,39551,39608,39632,39764,42570,42603,42775,42795,43034,43134,43165,43890,44138,44177,44209,44211,44221,44222,44248,52872,53059,53229,53916,53917,53918,53919,54193,54194,54222,54223,54224,55021,55360,55402,64801,65944,65969,65991,66640,66650,66719,66736,67080,68741,70397,70531,70532,70538,71121,71632,71633,71703,71732,71734,72083,72093,72104,75015,75262,75836,76078,76199,76579,76688,76693,76811,78223,78745,79984,80254"
+								},
+								{
+									"key": "api-version",
+									"value": "1.0"
+								}
+							]
+						},
+						"description": "Retrieves all the current information for a work item\n\n**Notes**\n* To retrieve the information as it was at a particular point in time add the *asOf* query string parameter. For e.g. asOf=2018-08-01\n* The *ids* parameter can accept a comma separated list of ids - up to a maximum of 200 ids"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Iterations",
+			"item": [
+				{
+					"name": "Retrieve ids of all work items Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"query\": \"Select [System.Id] FROM WorkItems WHERE [System.TeamProject] = @project AND [System.WorkItemType] = '{{story_work_item_type}}' AND [System.IterationLevel4] = '2018.43' \"\r\n}"
+						},
+						"url": {
+							"raw": "https://{{vsts_collection}}.visualstudio.com/{{project_name}}/_apis/wit/wiql?api-version=1.0",
+							"protocol": "https",
+							"host": [
+								"{{vsts_collection}}",
+								"visualstudio",
+								"com"
+							],
+							"path": [
+								"{{project_name}}",
+								"_apis",
+								"wit",
+								"wiql"
+							],
+							"query": [
+								{
+									"key": "api-version",
+									"value": "1.0"
+								}
+							]
+						},
+						"description": "**This request requires READ access to Work Items**"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Iterations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{vsts_collection}}.visualstudio.com/{{project_name}}/_apis/work/teamsettings/iterations",
+							"protocol": "https",
+							"host": [
+								"{{vsts_collection}}",
+								"visualstudio",
+								"com"
+							],
+							"path": [
+								"{{project_name}}",
+								"_apis",
+								"work",
+								"teamsettings",
+								"iterations"
+							]
+						},
+						"description": "Retrieves all the iterations configured for the project"
+					},
+					"response": []
+				},
+				{
+					"name": "Get WorkItems for Iteration",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{vsts_collection}}.visualstudio.com/{{project_name}}/_apis/work/teamsettings/iterations/d491018e-eff0-4620-a5f9-e4615fe63c44/workitems?asOf=2018-07-15T00:00:00.000Z&api-version=4.1-preview.1",
+							"protocol": "https",
+							"host": [
+								"{{vsts_collection}}",
+								"visualstudio",
+								"com"
+							],
+							"path": [
+								"{{project_name}}",
+								"_apis",
+								"work",
+								"teamsettings",
+								"iterations",
+								"d491018e-eff0-4620-a5f9-e4615fe63c44",
+								"workitems"
+							],
+							"query": [
+								{
+									"key": "asOf",
+									"value": "2018-07-15T00:00:00.000Z"
+								},
+								{
+									"key": "api-version",
+									"value": "4.1-preview.1"
+								}
+							]
+						},
+						"description": "Retrieves all the iterations configured for the project"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pull Rate Forecast",
+			"item": [
+				{
+					"name": "Stories pulled off backlog in time range",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n \t\"query\":         \"Select [System.Id], [System.Title], [System.State]         From WorkItems         Where [System.CreatedDate] < '2018-11-01'             AND [System.State] = 'Committed'             AND [System.WorkItemType] ='Product Backlog Item'             AND [Microsoft.VSTS.Common.StateChangeDate] >= '2018-11-15'         order by [Microsoft.VSTS.Common.Priority] asc,             [System.CreatedDate] desc         ASOF '2018-11-21'\"\r\n    }"
+						},
+						"url": {
+							"raw": "https://{{vsts_collection}}.visualstudio.com/{{project_name}}/_apis/wit/wiql?api-version=1.0",
+							"protocol": "https",
+							"host": [
+								"{{vsts_collection}}",
+								"visualstudio",
+								"com"
+							],
+							"path": [
+								"{{project_name}}",
+								"_apis",
+								"wit",
+								"wiql"
+							],
+							"query": [
+								{
+									"key": "api-version",
+									"value": "1.0"
+								}
+							]
+						},
+						"description": "**This request requires READ access to Work Items**"
+					},
+					"response": []
+				},
+				{
+					"name": "Links between Work Items",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"query\": \"Select [System.Id], [System.Title], [System.State] From WorkItems Where [System.CreatedDate] < '2018-08-29' AND [System.State] = 'Committed' AND [System.WorkItemType] = '{{story_work_item_type}}' AND [Microsoft.VSTS.Common.StateChangeDate] >= '2018-08-29' order by [Microsoft.VSTS.Common.Priority] asc, [System.CreatedDate] desc  ASOF '2018-09-05'\"\r\n} \r\n"
+						},
+						"url": {
+							"raw": "https://{{vsts_collection}}.visualstudio.com/{{project_name}}/_apis/wit/wiql?api-version=1.0",
+							"protocol": "https",
+							"host": [
+								"{{vsts_collection}}",
+								"visualstudio",
+								"com"
+							],
+							"path": [
+								"{{project_name}}",
+								"_apis",
+								"wit",
+								"wiql"
+							],
+							"query": [
+								{
+									"key": "api-version",
+									"value": "1.0"
+								}
+							]
+						},
+						"description": "**This request requires READ access to Work Items**"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Retrieve ids of all work items",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"query\": \"Select [System.Id] FROM WorkItems WHERE [System.TeamProject] = @project AND [System.WorkItemType] = '{{story_work_item_type}}'\"\r\n}"
+				},
+				"url": {
+					"raw": "https://{{vsts_collection}}.visualstudio.com/{{project_name}}/_apis/wit/wiql?api-version=1.0",
+					"protocol": "https",
+					"host": [
+						"{{vsts_collection}}",
+						"visualstudio",
+						"com"
+					],
+					"path": [
+						"{{project_name}}",
+						"_apis",
+						"wit",
+						"wiql"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "1.0"
+						}
+					]
+				},
+				"description": "**This request requires READ access to Work Items**"
+			},
+			"response": []
+		},
+		{
+			"name": "Stories not completed for date",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"query\": \"Select [System.Id] FROM WorkItems WHERE [System.TeamProject] = @project AND [System.WorkItemType] = '{{story_work_item_type}}' AND ([System.State] = 'New' OR [System.State] = 'Approved' OR [System.State] = 'Committed') AND [WEF_7FD0B1E64F5C422C97B804850CD7B18F_Kanban.Column] != '5. Ready for Environments Team'\"\r\n}"
+				},
+				"url": {
+					"raw": "https://{{vsts_collection}}.visualstudio.com/{{project_name}}/_apis/wit/wiql?api-version=1.0",
+					"protocol": "https",
+					"host": [
+						"{{vsts_collection}}",
+						"visualstudio",
+						"com"
+					],
+					"path": [
+						"{{project_name}}",
+						"_apis",
+						"wit",
+						"wiql"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "1.0"
+						}
+					]
+				},
+				"description": "**This request requires READ access to Work Items**"
+			},
+			"response": []
+		},
+		{
+			"name": "Stories completed not deployed as of date",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"query\": \"Select [System.Id] FROM WorkItems WHERE [System.TeamProject] = 'Project Name'         AND [System.WorkItemType] = 'Product Backlog Item' AND ([System.State] = 'New' OR [System.State] = 'Approved' OR [System.State] = 'Committed') AND [WEF_7FD0B1E64F5C422C97B804850CD7B18F_Kanban.Column] = '5. Ready for Environments Team'    ASOF '2018-08-29' \"\r\n        } `"
+				},
+				"url": {
+					"raw": "https://{{vsts_collection}}.visualstudio.com/{{project_name}}/_apis/wit/wiql?api-version=1.0",
+					"protocol": "https",
+					"host": [
+						"{{vsts_collection}}",
+						"visualstudio",
+						"com"
+					],
+					"path": [
+						"{{project_name}}",
+						"_apis",
+						"wit",
+						"wiql"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "1.0"
+						}
+					]
+				},
+				"description": "**This request requires READ access to Work Items**"
+			},
+			"response": []
+		},
+		{
+			"name": "Stories completed not deployed as of today",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"query\": \"Select [System.Id] FROM WorkItems WHERE [System.TeamProject] = 'Project Name'         AND [System.WorkItemType] = 'Product Backlog Item' AND ([System.State] = 'New' OR [System.State] = 'Approved' OR [System.State] = 'Committed') AND [WEF_7FD0B1E64F5C422C97B804850CD7B18F_Kanban.Column] = '5. Ready for Environments Team'\"\r\n        } `"
+				},
+				"url": {
+					"raw": "https://{{vsts_collection}}.visualstudio.com/{{project_name}}/_apis/wit/wiql?api-version=1.0",
+					"protocol": "https",
+					"host": [
+						"{{vsts_collection}}",
+						"visualstudio",
+						"com"
+					],
+					"path": [
+						"{{project_name}}",
+						"_apis",
+						"wit",
+						"wiql"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "1.0"
+						}
+					]
+				},
+				"description": "**This request requires READ access to Work Items**"
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve work item properties",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"query\": \"Select [System.Id] FROM WorkItems WHERE [System.State] = 'Committed' AND [System.TeamProject] = 'Project Name' AND [System.WorkItemType] = '{{story_work_item_type}}' ASOF '2018-10-29'\"\n}"
+				},
+				"url": {
+					"raw": "https://{{vsts_collection}}.visualstudio.com/{{project_name}}/_apis/wit/wiql?api-version=4.1",
+					"protocol": "https",
+					"host": [
+						"{{vsts_collection}}",
+						"visualstudio",
+						"com"
+					],
+					"path": [
+						"{{project_name}}",
+						"_apis",
+						"wit",
+						"wiql"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "4.1"
+						}
+					]
+				},
+				"description": "**This request requires READ access to Work Items**"
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve ids of all open work items",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"query\": \"Select [System.Id] FROM WorkItems WHERE [System.TeamProject] = @project AND [System.WorkItemType] = '{{story_work_item_type}}' AND [System.State] <> 'Done'\"\r\n}"
+				},
+				"url": {
+					"raw": "https://{{vsts_collection}}.visualstudio.com/{{project_name}}/_apis/wit/wiql?api-version=1.0",
+					"protocol": "https",
+					"host": [
+						"{{vsts_collection}}",
+						"visualstudio",
+						"com"
+					],
+					"path": [
+						"{{project_name}}",
+						"_apis",
+						"wit",
+						"wiql"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "1.0"
+						}
+					]
+				},
+				"description": "**This request requires READ access to Work Items**"
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve all stories with feature links from VSTS",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"query\": \"Select [System.Title] FROM WorkItemLinks WHERE Source.[System.WorkItemType] = 'Feature' AND Target.[System.WorkItemType] = '{{story_work_item_type}}' AND [System.Links.LinkType] = 'System.LinkTypes.Hierarchy-Forward' ORDER BY [Microsoft.VSTS.Common.BacklogPriority] ASC,[System.Id] ASC MODE (Recursive, ReturnMatchingChildren)\"\r\n}"
+				},
+				"url": {
+					"raw": "https://{{vsts_collection}}.visualstudio.com/{{project_name}}/_apis/wit/wiql?api-version=1.0",
+					"protocol": "https",
+					"host": [
+						"{{vsts_collection}}",
+						"visualstudio",
+						"com"
+					],
+					"path": [
+						"{{project_name}}",
+						"_apis",
+						"wit",
+						"wiql"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "1.0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve all epics",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"query\": \"Select [System.Id], [System.Title], [System.Description] FROM WorkItems WHERE [System.TeamProject] = @project AND [System.WorkItemType] = 'Epic'\"\r\n}"
+				},
+				"url": {
+					"raw": "https://{{vsts_collection}}.visualstudio.com/{{project_name}}/_apis/wit/wiql?api-version=1.0",
+					"protocol": "https",
+					"host": [
+						"{{vsts_collection}}",
+						"visualstudio",
+						"com"
+					],
+					"path": [
+						"{{project_name}}",
+						"_apis",
+						"wit",
+						"wiql"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "1.0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve ids of all completed work items",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"query\": \"Select [System.Id] FROM WorkItems WHERE [System.TeamProject] = @project AND [System.WorkItemType] = '{{story_work_item_type}}' AND [System.State] = 'Done'\"\r\n}"
+				},
+				"url": {
+					"raw": "https://{{vsts_collection}}.visualstudio.com/{{project_name}}/_apis/wit/wiql?api-version=1.0",
+					"protocol": "https",
+					"host": [
+						"{{vsts_collection}}",
+						"visualstudio",
+						"com"
+					],
+					"path": [
+						"{{project_name}}",
+						"_apis",
+						"wit",
+						"wiql"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "1.0"
+						}
+					]
+				},
+				"description": "**This request requires READ access to Work Items**"
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve ids of all open work items at a specific point in time",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "663118e5-432b-473d-8966-306d78f21bf5",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"console.log(jsonData);",
+							"",
+							"var workItems = pm.response.json().workItems;",
+							"",
+							"var workItemCount = workItems.length;",
+							"// Note that this is not giving me the answer I expect at the moment",
+							"console.log(\"Work Item Count = \" + workItemCount);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n//  \"query\": \"Select [System.Id] FROM WorkItems WHERE [System.State] = 'Committed' OR [System.State] = 'New' OR [System.State] = 'Approved' AND [System.TeamProject] = 'Project Name' AND [System.WorkItemType] = '{{story_work_item_type}}' ASOF '2018-10-01'\"\r\n  \"query\": \"Select [System.Id] FROM WorkItems WHERE [System.State] = 'Committed' AND [System.TeamProject] = 'Project Name' AND [System.WorkItemType] = '{{story_work_item_type}}' ASOF '2018-10-29'\"\r\n}"
+				},
+				"url": {
+					"raw": "https://dev.azure.com/{{vsts_collection}}/{{project_name}}/_apis/wit/wiql?api-version=4.1&$expand=all",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"azure",
+						"com"
+					],
+					"path": [
+						"{{vsts_collection}}",
+						"{{project_name}}",
+						"_apis",
+						"wit",
+						"wiql"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "4.1"
+						},
+						{
+							"key": "$expand",
+							"value": "all"
+						}
+					]
+				},
+				"description": "**This request requires READ access to Work Items**"
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve ids of all pulled work items at a specific point in time Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "663118e5-432b-473d-8966-306d78f21bf5",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"console.log(jsonData);",
+							"",
+							"var workItems = pm.response.json().workItems;",
+							"",
+							"var workItemCount = workItems.length;",
+							"// Note that this is not giving me the answer I expect at the moment",
+							"console.log(\"Work Item Count = \" + workItemCount);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"query\": \"Select [System.Id] FROM WorkItems WHERE [System.TeamProject] = 'Project Name' AND [System.WorkItemType] = '{{story_work_item_type}}' AND ([System.State] = 'Committed' OR [System.State] = 'Done') ASOF '2018-10-29'\"\r\n}"
+				},
+				"url": {
+					"raw": "https://dev.azure.com/{{vsts_collection}}/{{project_name}}/_apis/wit/wiql?api-version=4.1&$expand=all",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"azure",
+						"com"
+					],
+					"path": [
+						"{{vsts_collection}}",
+						"{{project_name}}",
+						"_apis",
+						"wit",
+						"wiql"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "4.1"
+						},
+						{
+							"key": "$expand",
+							"value": "all"
+						}
+					]
+				},
+				"description": "**This request requires READ access to Work Items**"
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve ids of all Features at a specific point in time",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "663118e5-432b-473d-8966-306d78f21bf5",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"console.log(jsonData);",
+							"",
+							"var workItems = pm.response.json().workItems;",
+							"",
+							"var workItemCount = workItems.length;",
+							"// Note that this is not giving me the answer I expect at the moment",
+							"console.log(\"Work Item Count = \" + workItemCount);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n//  \"query\": \"Select [System.Id] FROM WorkItems WHERE [System.State] = 'Committed' OR [System.State] = 'New' OR [System.State] = 'Approved' AND [System.TeamProject] = 'Project Name' AND [System.WorkItemType] = '{{story_work_item_type}}' ASOF '2018-10-01'\"\r\n  \"query\": \"Select [System.Id] FROM WorkItems WHERE [System.TeamProject] = 'Project Name' AND [System.WorkItemType] = 'Feature' ASOF '2018-10-29'\"\r\n}"
+				},
+				"url": {
+					"raw": "https://dev.azure.com/{{vsts_collection}}/{{project_name}}/_apis/wit/wiql?api-version=4.1&$expand=all",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"azure",
+						"com"
+					],
+					"path": [
+						"{{vsts_collection}}",
+						"{{project_name}}",
+						"_apis",
+						"wit",
+						"wiql"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "4.1"
+						},
+						{
+							"key": "$expand",
+							"value": "all"
+						}
+					]
+				},
+				"description": "**This request requires READ access to Work Items**"
+			},
+			"response": []
+		},
+		{
+			"name": "Open work items at a date, priority order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e090ae2c-6d81-464d-8e5d-6cff3993f904",
+						"exec": [
+							"let jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Asof date is as requested\", function () {",
+							"    pm.expect(jsonData.asOf).to.eql(\"2018-04-23T00:00:00Z\");",
+							"});",
+							"",
+							"",
+							"let workitem0 = jsonData.workItems[0]",
+							"console.log(\"First work item is \" + workitem0.id);",
+							"console.log(\"Backlog length = \" + jsonData.workItems.length);",
+							"",
+							"let workitem79 = jsonData.workItems[79]",
+							"console.log(\"80th work item is \" + workitem79.id);",
+							"",
+							"let workitem89 = jsonData.workItems[89]",
+							"console.log(\"90th work item is \" + workitem89.id);",
+							"",
+							"let workitem99 = jsonData.workItems[99]",
+							"console.log(\"100th work item is \" + workitem99.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"query\": \"Select [System.Id], [Backlog Priority] FROM WorkItems WHERE [System.TeamProject] = @project AND [System.WorkItemType] = '{{story_work_item_type}}' ORDER BY [Backlog Priority] asc ASOF '2018-04-23'\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "https://dev.azure.com/{{vsts_collection}}/{{project_name}}/_apis/wit/wiql?api-version=4.1&fields=System.Id,System.State",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"azure",
+						"com"
+					],
+					"path": [
+						"{{vsts_collection}}",
+						"{{project_name}}",
+						"_apis",
+						"wit",
+						"wiql"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "4.1"
+						},
+						{
+							"key": "fields",
+							"value": "System.Id,System.State"
+						}
+					]
+				},
+				"description": "**This request requires READ access to Work Items**"
+			},
+			"response": []
+		},
+		{
+			"name": "Backlog Items that changed to commited",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e090ae2c-6d81-464d-8e5d-6cff3993f904",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"disabled": false,
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"query\": \r\n        \"Select [System.Id], [System.Title], [System.State] From WorkItems Where [System.CreatedDate] < '2018-10-22' AND [System.State] = 'Committed' AND [System.WorkItemType] = 'Product Backlog Item' AND [Microsoft.VSTS.Common.StateChangeDate] >= '2018-11-05' order by [Microsoft.VSTS.Common.Priority] asc, [System.CreatedDate] desc ASOF '2018-11-12'\"\r\n    }\r\n"
+				},
+				"url": {
+					"raw": "https://dev.azure.com/{{vsts_collection}}/{{project_name}}/_apis/wit/wiql?api-version=4.1&fields=System.Id,System.State",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"azure",
+						"com"
+					],
+					"path": [
+						"{{vsts_collection}}",
+						"{{project_name}}",
+						"_apis",
+						"wit",
+						"wiql"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "4.1"
+						},
+						{
+							"key": "fields",
+							"value": "System.Id,System.State"
+						}
+					]
+				},
+				"description": "**This request requires READ access to Work Items**"
+			},
+			"response": []
+		},
+		{
+			"name": "Backlog Items from 2018 Q4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e090ae2c-6d81-464d-8e5d-6cff3993f904",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"disabled": false,
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"query\": \r\n        \"Select [System.Id], [System.Title], [System.State] From WorkItems Where [System.IterationLevel3] Contains '2018 Q4'\"\r\n    }\r\n"
+				},
+				"url": {
+					"raw": "https://dev.azure.com/{{vsts_collection}}/{{project_name}}/_apis/wit/wiql?api-version=4.1&fields=System.Id,System.State",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"azure",
+						"com"
+					],
+					"path": [
+						"{{vsts_collection}}",
+						"{{project_name}}",
+						"_apis",
+						"wit",
+						"wiql"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "4.1"
+						},
+						{
+							"key": "fields",
+							"value": "System.Id,System.State"
+						}
+					]
+				},
+				"description": "**This request requires READ access to Work Items**"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "{{client_id}}",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "{{client_secret}}",
+				"type": "string"
+			},
+			{
+				"key": "saveHelperData",
+				"value": true,
+				"type": "boolean"
+			},
+			{
+				"key": "showPassword",
+				"value": false,
+				"type": "boolean"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "8cac9b51-af4b-4045-9fc2-405f4063bf63",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "865f3af2-cde2-43e1-813b-cce0f023fc39",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "3e54afd8-d4e5-4c2a-9e22-ac323003f271",
+			"key": "client_secret",
+			"value": "some_secret",
+			"type": "string"
+		},
+		{
+			"id": "e74b9326-ec09-4c7e-a000-d46baaaf5e2b",
+			"key": "client_id",
+			"value": "email@domain.com",
+			"type": "string"
+		},
+		{
+			"id": "a5ba22fd-2b10-4928-b21b-5eae5123ffec",
+			"key": "project_name",
+			"value": "Project%20Name",
+			"type": "string"
+		},
+		{
+			"id": "d15b3351-5166-4515-8d67-8af7a0195db2",
+			"key": "vsts_collection",
+			"value": "organisation_name",
+			"type": "string"
+		},
+		{
+			"id": "af764e65-1e3c-4bae-81ef-e217da001258",
+			"key": "story_work_item_type",
+			"value": "Product Backlog Item",
+			"type": "string"
+		}
+	]
+}
